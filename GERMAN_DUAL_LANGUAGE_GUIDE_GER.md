@@ -1004,8 +1004,8 @@ Jetzt werden deine Filme und Serien immer dann auf eine höhere Qualität upgrad
 Dieser Schritt ergänzt die vorhandenen Quality Profiles um eine Bewertung der Audioqualität in folgender Reihenfolge: Atmos > DTS > EAC3 > AC3 > Stereo. Sprache bleibt nach wie vor die höchste Priorität (German DL mit 25000 Punkten), gefolgt von der Bildqualität (z.B. 2000 Punkte pro Qualitätsstufe), anschließend wird die Tonspur ausgewertet.
 
 **Audio Custom Formats**
-```json
 Importiere die folgenden Custom Formats für die Audio-Qualitätsstufen:
+```json
 {
   "name": "Audio-Atmos",
   "includeCustomFormatWhenRenaming": false,
