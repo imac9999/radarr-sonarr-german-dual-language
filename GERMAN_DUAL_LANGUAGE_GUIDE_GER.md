@@ -23,7 +23,8 @@ Letztes Update: 30.01.2024
     - [Bevorzuge Deutsch vor Englisch, wenn kein DL Release vorhanden ist](#--bevorzuge-deutsch-vor-englisch-wenn-kein-dl-release-vorhanden-ist)
     - [Bevorzuge Englisch vor Deutsch, wenn kein DL Release vorhanden ist](#--bevorzuge-englisch-vor-deutsch-wenn-kein-dl-release-vorhanden-ist)
   - [9. Qualitäts-Upgrades durch Custom Formats](#9-qualitäts-upgrades-durch-custom-formats)
-  - [10. Optional: Mic Dubbed Tonspuren vermeiden](#10-optional-mic-dubbed-tonspuren-vermeiden)
+  - - [10. Audio-Qualitätsprofile](#10-audio-qualitätsprofile)
+  - [11. Optional: Mic Dubbed Tonspuren vermeiden](#11-optional-mic-dubbed-tonspuren-vermeiden)
 - [Kontakt & Support](#kontakt--support)
 
 ## Mitwirken
@@ -984,13 +985,99 @@ Im [vorherigen Beispiel](https://raw.githubusercontent.com/PCJones/radarr-sonarr
 
 Ordne diesen Custom Formats anschließend Punkte in deinem Quality Profile zu. Setze `0` für die niedrigste Qualität, `2000` für die zweitniedrigste, `4000` für die nächste, usw. - erhöhe also die Punktzahl jedes Mal um `2000`. Mit diesem Punktesystem wird eine Priorisierung und ein Upgrade auf höherwertige Formate ermöglicht, wenn sie verfügbar werden.
 
+
+    Sprachen (German DL/usw.): 25000
+    Bildqualität: 2000-8000
+    Audioqualität: 100-400
+    MIC DUB Penalty: -35000
+    
+
+
 Hier ist ein Beispiel dafür, wie die Punktevergabe aussehen sollte:
 
 ![Custom Format Quality](https://github.com/PCJones/radarr-sonarr-german-dual-language/blob/main/img/custom_format_quality.png?raw=true)
 
 Jetzt werden deine Filme und Serien immer dann auf eine höhere Qualität upgraden, sobald ein German DL Release in höherer Qualität verfügbar wird.
 
-### 10. Optional: Mic Dubbed Tonspuren vermeiden
+## 10. Audio-Qualitätsprofile
+
+Dieser Schritt ergänzt die vorhandenen Quality Profiles um eine Bewertung der Audioqualität in folgender Reihenfolge: Atmos > DTS > EAC3 > AC3 > Stereo. Sprache bleibt nach wie vor die höchste Priorität (German DL mit 25000 Punkten), gefolgt von der Bildqualität (z.B. 2000 Punkte pro Qualitätsstufe), anschließend wird die Tonspur ausgewertet.
+
+**Audio Custom Formats**
+```json
+Importiere die folgenden Custom Formats für die Audio-Qualitätsstufen:
+{
+  "name": "Audio-Atmos",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Atmos",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)atmos|truehd.atmos"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "name": "Audio-DTS",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "DTS",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)dts(.?hd)?(.?ma)?|dts-hd|dts\-hd"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "name": "Audio-EAC3",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "EAC3",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)eac3|ddp|e-?ac-?3"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "name": "Audio-AC3",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "AC3",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)ac3|dd5.1|dd5\.1|dolby.?digital"
+      }
+    }
+  ]
+}
+```
+
+### 11. Optional: Mic Dubbed Tonspuren vermeiden
 Mic Dubbed ("MD") Tonspuren werden z.B. im Kino aufgenommen und haben eine schlechte Soundqualität. Außerdem können sie Geräusche von Zuschauern enthalten. Der erste German DL Release hat oft eine einwandfreie Englische Tonspur, die Deutsche ist aber Mic Dubbed. Falls du nicht total ungeduldig bist empfehle ich sehr, diese zu vermeiden. Da es hier nur um Filme geht ist das Ganze nur für Radarr relevant.
 
 Wenn du Mic Dubbed releases haben möchtest, empfehle ich trotzdem das Custom Format zu importieren und einen Score von `-100` zu vergeben, damit Radarr den Film upgraded, sobald er mit einer besseren Tonspur released wird.
