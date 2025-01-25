@@ -1108,9 +1108,25 @@ Importiere das MIC DUB Custom Format:
 
 In den Einstellungen des Quality Profiles setze die Punktzahl für das Custom Format wie folgt:
 
-| Custom Format         | Score  |
-|-----------------------|--------|
-| MIC DUB             | -35000  |
+| Benutzerdefiniertes Format | Punktzahl |
+|---------------------------|-----------|
+| German DL | 25000 |
+| German DL 2 | 25000 |
+| Language: German Only | 10000 |
+| Bluray-1080p | 8000 |
+| WEBDL-1080p | 7000 |
+| WebRip-1080p | 6000 |
+| Language: English Only | 5000 |
+| Bluray-720p | 4000 |
+| WEBDL-720p | 3000 |
+| WebRip-720p | 2000 |
+| Audio-Atmos | 400 |
+| Audio-DTS | 300 |
+| Audio-EAC3 | 200 |
+| Audio-AC3 | 100 |
+| Language: Not ENG/GER | -30000 |
+| MIC DUB | -35000 |
+
 
 ## Kontakt & Support
 - Öffne gerne ein Issue auf GitHub falls du Unterstützung benötigst.
