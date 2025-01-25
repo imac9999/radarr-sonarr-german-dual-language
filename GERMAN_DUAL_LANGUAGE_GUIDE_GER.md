@@ -823,6 +823,79 @@ Importiere das MIC DUB Custom Format:
 ```
 </details>
 
+```json
+{
+  "name": "Audio-Atmos",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Atmos",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)atmos|truehd.atmos"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "name": "Audio-DTS",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "DTS",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)dts(.?hd)?(.?ma)?|dts-hd"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "name": "Audio-EAC3",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "EAC3",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)eac3|ddp|e-?ac-?3"
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+  "name": "Audio-AC3",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "AC3",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)ac3|dd5.1|dolby.?digital"
+      }
+    }
+  ]
+}
+```
+
+
 **Punktevergabe**
 
 | Benutzerdefiniertes Format | Punktzahl |
