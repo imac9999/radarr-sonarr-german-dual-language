@@ -1034,7 +1034,7 @@ Importiere die folgenden Custom Formats für die Audio-Qualitätsstufen:
       "negate": false,
       "required": true,
       "fields": {
-        "value": "(?i)dts(.?hd)?(.?ma)?|dts-hd|dts\-hd"
+        "value": "(?i)dts(.?hd)?(.?ma)?|dts-hd"
       }
     }
   ]
@@ -1070,7 +1070,7 @@ Importiere die folgenden Custom Formats für die Audio-Qualitätsstufen:
       "negate": false,
       "required": true,
       "fields": {
-        "value": "(?i)ac3|dd5.1|dd5\.1|dolby.?digital"
+        "value": "(?i)ac3|dd5.1|dolby.?digital"
       }
     }
   ]
